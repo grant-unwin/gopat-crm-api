@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gopat.Crm.Api", "Gopat.Crm.Api\Gopat.Crm.Api.csproj", "{7394BE03-5A74-4D31-96AB-2C8C1B25B007}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{43487E29-64ED-46FB-A094-F94BF5F7EB9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.Datadog.Logs", "Serilog.Sinks.Datadog.Logs\Serilog.Sinks.Datadog.Logs.csproj", "{27151239-43E4-4721-BF4E-31F632491039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gopat.Crm.Models", "Gopat.Crm.Models\Gopat.Crm.Models.csproj", "{451B676B-1027-481F-ACCA-78D5AA07DB97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7394BE03-5A74-4D31-96AB-2C8C1B25B007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7394BE03-5A74-4D31-96AB-2C8C1B25B007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7394BE03-5A74-4D31-96AB-2C8C1B25B007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7394BE03-5A74-4D31-96AB-2C8C1B25B007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27151239-43E4-4721-BF4E-31F632491039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27151239-43E4-4721-BF4E-31F632491039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27151239-43E4-4721-BF4E-31F632491039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27151239-43E4-4721-BF4E-31F632491039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451B676B-1027-481F-ACCA-78D5AA07DB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451B676B-1027-481F-ACCA-78D5AA07DB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451B676B-1027-481F-ACCA-78D5AA07DB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451B676B-1027-481F-ACCA-78D5AA07DB97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27151239-43E4-4721-BF4E-31F632491039} = {43487E29-64ED-46FB-A094-F94BF5F7EB9F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7C59BB7-B7BC-42B4-9381-4DA01F183741}
+	EndGlobalSection
+EndGlobal
