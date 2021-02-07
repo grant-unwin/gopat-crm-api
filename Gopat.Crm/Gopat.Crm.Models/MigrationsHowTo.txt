@@ -1,0 +1,2 @@
+﻿$Env:ASPNETCORE_ENVIRONMENT = "Integration"
+Add-Migration MigrationName

@@ -1,18 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Gopat.Crm.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -33,9 +24,6 @@ namespace Gopat.Crm.Api
         {
             services.AddDistributedMemoryCache();
 
-            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-                .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
-
 
             if (Configuration.GetValue<string>("Env") == "Development")
             {
@@ -45,7 +33,7 @@ namespace Gopat.Crm.Api
             else
             {
                 Log.Information("Using SQL Server...");
-                var connectionString = Configuration.GetValue<string>("ConnectionStrings:PetstarEpos");
+                var connectionString = Configuration.GetValue<string>("ConnectionStrings:GoPat");
                 services.AddDbContext<GopatContext>(opt => opt.UseSqlServer(connectionString).LogTo(Log.Information));
             }
 
@@ -56,19 +44,26 @@ namespace Gopat.Crm.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GopatContext dataContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+
+            Log.Information("Ensuring database exists...");
+            dataContext.Database.EnsureCreated();
+
+            app.UseSerilogRequestLogging(); // <-- Add this line
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
