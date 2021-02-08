@@ -30,7 +30,7 @@ namespace Gopat.Crm.Models
             modelBuilder.Entity<Contract>()
                 .HasOne(c => c.Company)
                 .WithMany(p => p.Contracts)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired()
                 .HasForeignKey(p => p.CompanyId);
 
