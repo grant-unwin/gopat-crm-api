@@ -9,10 +9,6 @@ namespace Gopat.Crm.Models
         public Guid SiteId { get; set; }
         public Site Site { get; set; }
 
-        public Guid? ContractId { get; set; }
-        public Contract? Contract { get; set; }
-
-
         public Price Price { get; set; }
     }
 }

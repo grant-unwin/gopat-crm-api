@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Gopat.Crm.Models
 {
@@ -32,11 +31,12 @@ namespace Gopat.Crm.Models
                 .IsRequired()
                 .HasForeignKey(p => p.CompanyId);
 
-            modelBuilder.Entity<Appointment>()
-                .HasOne(c => c.Contract)
-                .WithMany(p => p.Appointments)
+            modelBuilder.Entity<Contract>()
+                .HasOne(c => c.Site)
+                .WithMany(p => p.Contracts)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired()
-                .HasForeignKey(p => p.ContractId);
+                .HasForeignKey(p => p.SiteId);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(c => c.Site)

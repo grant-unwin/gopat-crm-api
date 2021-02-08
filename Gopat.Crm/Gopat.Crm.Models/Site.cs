@@ -10,6 +10,8 @@ namespace Gopat.Crm.Models
         public Guid CompanyId { get; set; }
         public Company Company { get; set; }
 
+
         public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<Contract> Contracts { get; set; }
     }
 }

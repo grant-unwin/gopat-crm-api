@@ -26,7 +26,6 @@ namespace Gopat.Crm.Models.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ContractId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Created")
@@ -122,11 +121,9 @@ namespace Gopat.Crm.Models.Migrations
 
             modelBuilder.Entity("Gopat.Crm.Models.Appointment", b =>
                 {
-                    b.HasOne("Gopat.Crm.Models.Contract", "Contract")
+                    b.HasOne("Gopat.Crm.Models.Contract", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContractId");
 
                     b.HasOne("Gopat.Crm.Models.Site", "Site")
                         .WithMany("Appointments")
@@ -153,8 +150,6 @@ namespace Gopat.Crm.Models.Migrations
                                 .HasForeignKey("AppointmentId");
                         });
 
-                    b.Navigation("Contract");
-
                     b.Navigation("Price");
 
                     b.Navigation("Site");
@@ -169,9 +164,9 @@ namespace Gopat.Crm.Models.Migrations
                         .IsRequired();
 
                     b.HasOne("Gopat.Crm.Models.Site", "Site")
-                        .WithMany()
+                        .WithMany("Contracts")
                         .HasForeignKey("SiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.OwnsOne("Gopat.Crm.Models.Price", "Price", b1 =>
@@ -226,6 +221,8 @@ namespace Gopat.Crm.Models.Migrations
             modelBuilder.Entity("Gopat.Crm.Models.Site", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("Contracts");
                 });
 #pragma warning restore 612, 618
         }
