@@ -23,28 +23,24 @@ namespace Gopat.Crm.Models
             modelBuilder.Entity<Site>()
                 .HasOne(c => c.Company)
                 .WithMany(p => p.Sites)
-                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired()
                 .HasForeignKey(p => p.CompanyId);
 
             modelBuilder.Entity<Contract>()
                 .HasOne(c => c.Company)
                 .WithMany(p => p.Contracts)
-                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired()
                 .HasForeignKey(p => p.CompanyId);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(c => c.Contract)
                 .WithMany(p => p.Appointments)
-                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired()
                 .HasForeignKey(p => p.ContractId);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(c => c.Site)
                 .WithMany(p => p.Appointments)
-                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired()
                 .HasForeignKey(p => p.SiteId);
 
