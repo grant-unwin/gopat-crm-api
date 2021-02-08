@@ -15,5 +15,41 @@ namespace Gopat.Crm.Models
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Site>()
+                .HasOne(c => c.Company)
+                .WithMany(p => p.Sites)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired()
+                .HasForeignKey(p => p.CompanyId);
+
+            modelBuilder.Entity<Contract>()
+                .HasOne(c => c.Company)
+                .WithMany(p => p.Contracts)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired()
+                .HasForeignKey(p => p.CompanyId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasOne(c => c.Contract)
+                .WithMany(p => p.Appointments)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired()
+                .HasForeignKey(p => p.ContractId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasOne(c => c.Site)
+                .WithMany(p => p.Appointments)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired()
+                .HasForeignKey(p => p.SiteId);
+
+
+        }
+
     }
 }

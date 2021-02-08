@@ -13,12 +13,10 @@ namespace Gopat.Crm.Models
 
         public Guid CompanyId { get; set; }
 
-        [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 
         public Guid SiteId { get; set; }
 
-        [ForeignKey("SiteId")]
         public Site Site { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; }
