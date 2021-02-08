@@ -37,6 +37,9 @@ namespace Gopat.Crm.Api
                 services.AddDbContext<GopatContext>(opt => opt.UseSqlServer(connectionString).LogTo(Log.Information));
             }
 
+            services.AddAutoMapper(typeof(Startup));
+
+
             services.AddControllers();
 
             services.AddAutoMapper(typeof(Startup));
@@ -50,7 +53,6 @@ namespace Gopat.Crm.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
 
             Log.Information("Ensuring database exists...");
             dataContext.Database.EnsureCreated();
