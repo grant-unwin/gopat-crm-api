@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Gopat.Crm.Models.Base;
+using Gopat.Crm.Models.Owned;
 
 namespace Gopat.Crm.Models
 {
     public class Contract : IdEntity
     {
+
+        public Contract()
+        {
+            Appointments = new List<Appointment>();
+        }
         public int IntervalMonths { get; set; }
         public Price Price { get; set; }
 
@@ -20,6 +26,10 @@ namespace Gopat.Crm.Models
         public Site Site { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime RenewalDate { get; set; }
+        public DateTime? CancelledDate { get; set; }
 
 
     }

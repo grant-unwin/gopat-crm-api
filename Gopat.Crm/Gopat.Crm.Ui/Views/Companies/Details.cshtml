@@ -1,0 +1,153 @@
+﻿@using Gopat.Crm.Models
+@model Gopat.Crm.Models.Company
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.CompanyName</h1>
+<div class="row">
+
+
+    <div class="col-6">
+        <h4>Details</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CompanyName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address.BuildingNumberName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.BuildingNumberName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address.StreetName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.StreetName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address.Area)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.Area)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address.City)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.City)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address.Postcode)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.Postcode)
+            </dd>
+        </dl>
+    </div>
+
+    
+    <div class="col-6">
+        <h4>Contacts</h4>
+        <hr />
+        <table class="table">
+            <thead>
+                @{ var contact = new Contact(); }
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => contact.JobRole)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contact.Person.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contact.Person.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contact.Telephone.Number)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Contacts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobRole)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Person.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Person.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone.Number)
+                    </td>
+                    @*<td>
+            <a asp-controller="Contacts" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        </td>*@
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+    
+    
+    <div class="col-6">
+        <h4>Contacts</h4>
+        <hr />
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address.BuildingNumberName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address.StreetName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address.Postcode)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Sites)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address.BuildingNumberName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address.StreetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address.Postcode)
+                    </td>
+                    <td>
+                        <a asp-controller="Sites" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div>
+    <a asp-controller="Sites" asp-action="Index">Sites</a> |
+
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,125 @@
+﻿@using Gopat.Crm.Models.Enums
+@model Gopat.Crm.Ui.Models.Company.CreateCompanyViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Company</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <fieldset>
+                <legend>Company Details</legend>
+
+
+                <div class="form-group">
+                    <label asp-for="Company.CompanyName" class="control-label"></label>
+                    <input asp-for="Company.CompanyName" class="form-control" />
+                    <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Company.TradingStyle" class="control-label"></label>
+                    <select asp-items="Html.GetEnumSelectList<TradingStyle>()" asp-for="Company.TradingStyle" class="form-control"></select>
+                    <span asp-validation-for="Company.TradingStyle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Company.RegistrationNumber" class="control-label"></label>
+                    <input asp-for="Company.RegistrationNumber" class="form-control" />
+                    <span asp-validation-for="Company.RegistrationNumber" class="text-danger"></span>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Registered Address</legend>
+
+
+                <div class="form-group">
+                    <label asp-for="Company.Address.BuildingNumberName" class="control-label"></label>
+                    <input asp-for="Company.Address.BuildingNumberName" class="form-control" />
+                    <span asp-validation-for="Company.Address.BuildingNumberName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Company.Address.StreetName" class="control-label"></label>
+                    <input asp-for="Company.Address.StreetName" class="form-control" />
+                    <span asp-validation-for="Company.Address.StreetName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Company.Address.Area" class="control-label"></label>
+                    <input asp-for="Company.Address.Area" class="form-control" />
+                    <span asp-validation-for="Company.Address.Area" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Company.Address.City" class="control-label"></label>
+                    <input asp-for="Company.Address.City" class="form-control" />
+                    <span asp-validation-for="Company.Address.City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.Address.Postcode" class="control-label"></label>
+                    <input asp-for="Company.Address.Postcode" class="form-control" />
+                    <span asp-validation-for="Company.Address.Postcode" class="text-danger"></span>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Primary Contact Details</legend>
+
+
+                <div class="form-group">
+                    <label asp-for="PrimaryContact.Person.FirstName" class="control-label"></label>
+                    <input asp-for="PrimaryContact.Person.FirstName" class="form-control" />
+                    <span asp-validation-for="PrimaryContact.Person.FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PrimaryContact.Person.LastName" class="control-label"></label>
+                    <input asp-for="PrimaryContact.Person.LastName" class="form-control" />
+                    <span asp-validation-for="PrimaryContact.Person.LastName" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="PrimaryContact.JobRole" class="control-label"></label>
+                    <select asp-items="Html.GetEnumSelectList<JobRole>()" asp-for="PrimaryContact.JobRole" class="form-control"></select>
+                    <span asp-validation-for="PrimaryContact.JobRole" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PrimaryContact.EmailAddress.Address" class="control-label"></label>
+                    <input asp-for="PrimaryContact.EmailAddress.Address" class="form-control" />
+                    <span asp-validation-for="PrimaryContact.EmailAddress.Address" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="PrimaryContact.Telephone.Number" class="control-label"></label>
+                    <input asp-for="PrimaryContact.Telephone.Number" class="form-control" />
+                    <span asp-validation-for="PrimaryContact.Telephone.Number" class="text-danger"></span>
+                </div>
+
+
+            </fieldset>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

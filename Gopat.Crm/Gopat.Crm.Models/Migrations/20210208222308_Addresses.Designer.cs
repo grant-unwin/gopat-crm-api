@@ -4,14 +4,16 @@ using Gopat.Crm.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gopat.Crm.Models.Migrations
 {
     [DbContext(typeof(GopatContext))]
-    partial class GopatContextModelSnapshot : ModelSnapshot
+    [Migration("20210208222308_Addresses")]
+    partial class Addresses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,40 +79,9 @@ namespace Gopat.Crm.Models.Migrations
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("RegistrationNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TradingStyle")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("Gopat.Crm.Models.Contact", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("JobRole")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Gopat.Crm.Models.Contract", b =>
@@ -186,7 +157,7 @@ namespace Gopat.Crm.Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Price", "Price", b1 =>
+                    b.OwnsOne("Gopat.Crm.Models.Price", "Price", b1 =>
                         {
                             b1.Property<Guid>("AppointmentId")
                                 .HasColumnType("uniqueidentifier");
@@ -212,7 +183,7 @@ namespace Gopat.Crm.Models.Migrations
 
             modelBuilder.Entity("Gopat.Crm.Models.Company", b =>
                 {
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Address", "Address", b1 =>
+                    b.OwnsOne("Gopat.Crm.Models.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("CompanyId")
                                 .HasColumnType("uniqueidentifier");
@@ -243,74 +214,6 @@ namespace Gopat.Crm.Models.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("Gopat.Crm.Models.Contact", b =>
-                {
-                    b.HasOne("Gopat.Crm.Models.Company", "Company")
-                        .WithMany("Contacts")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("Gopat.Crm.Models.Owned.EmailAddress", "EmailAddress", b1 =>
-                        {
-                            b1.Property<Guid>("ContactId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Address")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ContactId");
-
-                            b1.ToTable("Contacts");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ContactId");
-                        });
-
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Person", "Person", b1 =>
-                        {
-                            b1.Property<Guid>("ContactId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("FirstName")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("LastName")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ContactId");
-
-                            b1.ToTable("Contacts");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ContactId");
-                        });
-
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Telephone", "Telephone", b1 =>
-                        {
-                            b1.Property<Guid>("ContactId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Number")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ContactId");
-
-                            b1.ToTable("Contacts");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ContactId");
-                        });
-
-                    b.Navigation("Company");
-
-                    b.Navigation("EmailAddress");
-
-                    b.Navigation("Person");
-
-                    b.Navigation("Telephone");
-                });
-
             modelBuilder.Entity("Gopat.Crm.Models.Contract", b =>
                 {
                     b.HasOne("Gopat.Crm.Models.Company", "Company")
@@ -325,7 +228,7 @@ namespace Gopat.Crm.Models.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Price", "Price", b1 =>
+                    b.OwnsOne("Gopat.Crm.Models.Price", "Price", b1 =>
                         {
                             b1.Property<Guid>("ContractId")
                                 .HasColumnType("uniqueidentifier");
@@ -359,7 +262,7 @@ namespace Gopat.Crm.Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Gopat.Crm.Models.Owned.Address", "Address", b1 =>
+                    b.OwnsOne("Gopat.Crm.Models.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("SiteId")
                                 .HasColumnType("uniqueidentifier");
@@ -394,8 +297,6 @@ namespace Gopat.Crm.Models.Migrations
 
             modelBuilder.Entity("Gopat.Crm.Models.Company", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("Contracts");
 
                     b.Navigation("Sites");

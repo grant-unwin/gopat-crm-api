@@ -9,10 +9,11 @@ namespace Gopat.Crm.Models
         {
         }
 
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Site> Sites { get; set; }
-        public DbSet<Contract> Contracts { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<Site> Sites { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +23,12 @@ namespace Gopat.Crm.Models
             modelBuilder.Entity<Site>()
                 .HasOne(c => c.Company)
                 .WithMany(p => p.Sites)
+                .IsRequired()
+                .HasForeignKey(p => p.CompanyId);
+
+            modelBuilder.Entity<Contact>()
+                .HasOne(c => c.Company)
+                .WithMany(p => p.Contacts)
                 .IsRequired()
                 .HasForeignKey(p => p.CompanyId);
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gopat.Crm.Models.Migrations
 {
     [DbContext(typeof(GopatContext))]
-    [Migration("20210208011635_AddFkContrainsts")]
-    partial class AddFkContrainsts
+    [Migration("20210208012414_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
