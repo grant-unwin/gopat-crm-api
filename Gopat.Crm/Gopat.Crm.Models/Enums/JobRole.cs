@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Gopat.Crm.Models.Enums
 {
+    
     public enum JobRole
     {
         Director,

@@ -42,7 +42,6 @@ namespace Gopat.Crm.Models
                 .HasOne(c => c.Site)
                 .WithMany(p => p.Contracts)
                 .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired()
                 .HasForeignKey(p => p.SiteId);
 
             modelBuilder.Entity<Appointment>()

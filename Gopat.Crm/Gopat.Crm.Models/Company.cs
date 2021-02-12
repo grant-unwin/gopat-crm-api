@@ -18,6 +18,7 @@ namespace Gopat.Crm.Models
         }
 
         [Required]
+        [DisplayName("Company Name")]
         public string CompanyName { get; set; }
 
         [DisplayName("Trading Style")]

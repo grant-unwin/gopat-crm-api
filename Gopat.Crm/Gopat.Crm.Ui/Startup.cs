@@ -45,6 +45,7 @@ namespace Gopat.Crm.Ui
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -65,6 +66,11 @@ namespace Gopat.Crm.Ui
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            if (env.IsDevelopment())
+            {
+             
+            }
         }
     }
 }

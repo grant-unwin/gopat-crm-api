@@ -1,0 +1,73 @@
+﻿@model Gopat.Crm.Ui.Models.Contract.CreateContractViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Contract</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IntervalMonths" class="control-label"></label>
+                <select asp-for="IntervalMonths" class="form-control">
+                    <option value="12">Annually</option>
+                    <option value="3">Quarterly</option>
+                    <option value="1">Monthly</option>
+                </select>
+                <span asp-validation-for="IntervalMonths" class="text-danger"></span>
+            </div>
+            @Html.HiddenFor(c => c.CompanyId, new { value = ViewBag.CompanyId })
+            <div class="form-group">
+                <label asp-for="ContractLengthYears" class="control-label"></label>
+                <select asp-for="ContractLengthYears" class="form-control">
+                    <option value="1">1 Years</option>
+                    <option value="2">2 Years</option>
+                    <option value="3">3 Years</option>
+                    <option value="4">4 Years</option>
+                    <option value="5">5 Years</option>
+                    <option value="6">6 Years</option>
+
+                </select>
+                <span asp-validation-for="ContractLengthYears" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" value="@DateTime.Now.ToShortDateString()" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price.ApplianceTestFee" class="control-label"></label>
+                <input asp-for="Price.ApplianceTestFee" asp-format="{0:C}"  class="form-control" />
+                <span asp-validation-for="Price.ApplianceTestFee" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Price.CalloutFee" class="control-label"></label>
+                <input asp-for="Price.CalloutFee" asp-format="{0:C}"  class="form-control" />
+                <span asp-validation-for="Price.CalloutFee" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

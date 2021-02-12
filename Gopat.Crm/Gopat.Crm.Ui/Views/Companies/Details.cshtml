@@ -6,12 +6,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.CompanyName</h1>
+
+<div class="row">
+    <div class="col-9">
+
+        <h1>@Model.CompanyName</h1>
+    </div>
+    <div class="col-3 text-right">
+    </div>
+</div>
+<hr />
+
 <div class="row">
 
 
     <div class="col-6">
-        <h4>Details</h4>
+        <div class="row">
+
+            <div class="col-6">
+                <h4>Details</h4>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+
+            </div>
+        </div>
         <hr />
         <dl class="row">
             <dt class="col-sm-4">
@@ -53,9 +72,18 @@
         </dl>
     </div>
 
-    
+
     <div class="col-6">
-        <h4>Contacts</h4>
+        <div class="row">
+
+            <div class="col-6">
+                <h4>Contacts</h4>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-light" asp-action="Create" asp-controller="Contacts" asp-route-companyId="@Model.Id">Add</a>
+
+            </div>
+        </div>
         <hr />
         <table class="table">
             <thead>
@@ -78,34 +106,34 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model.Contacts)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JobRole)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Person.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Person.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telephone.Number)
-                    </td>
-                    @*<td>
-            <a asp-controller="Contacts" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-        </td>*@
-                </tr>
-            }
+                @foreach (var item in Model.Contacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobRole)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Person.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Person.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone.Number)
+                        </td>
+                        <td>
+                            <a asp-controller="Contacts" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
 
     </div>
-    
-    
+
+
     <div class="col-6">
-        <h4>Contacts</h4>
+        <h4>Sites</h4>
         <hr />
         <table class="table">
             <thead>
@@ -136,7 +164,66 @@
                         @Html.DisplayFor(modelItem => item.Address.Postcode)
                     </td>
                     <td>
-                        <a asp-controller="Sites" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-controller="Sites" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+    
+    
+    <div class="col-6">
+        <div class="row">
+
+            <div class="col-6">
+                <h4>Contracts</h4>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-light" asp-action="Create" asp-controller="Contracts" asp-route-companyId="@Model.Id">Add</a>
+
+            </div>
+        </div>
+        <hr />
+        <table class="table">
+            <thead>
+            @{ var contract = new Contract(); }
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => contract.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contract.IntervalMonths)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contract.Price.CalloutFee)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => contract.Price.ApplianceTestFee)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Contracts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IntervalMonths)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price.ApplianceTestFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price.CalloutFee)
+                    </td>
+                    <td>
+                        <a asp-controller="Contracts" asp-action="Details" asp-route-id="@item.Id">Details</a>
                     </td>
                 </tr>
             }
@@ -146,8 +233,5 @@
     </div>
 </div>
 <div>
-    <a asp-controller="Sites" asp-action="Index">Sites</a> |
 
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

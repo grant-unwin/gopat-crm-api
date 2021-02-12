@@ -5,23 +5,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Companies</h1>
+<div class="row">
+    <div class="col-9">
+        <h1>Companies</h1>
+    </div>
+    <div class="col-3 text-right">
+        <a class="btn btn-light" asp-action="Create">Create New</a>
+    </div>
+</div>
 
-<p>
-    <a class="btn btn-light" asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CompanyName)
             </th>
+         
             <th>
-                @Html.DisplayNameFor(model => model.Created)
+                @Html.DisplayNameFor(model => model.Address.City)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Modified)
+                @Html.DisplayNameFor(model => model.Address.Postcode)
             </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -31,16 +37,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
+          
             <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                @Html.DisplayFor(modelItem => item.Address.City)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Modified)
+                @Html.DisplayFor(modelItem => item.Address.Postcode)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="text-right">
+                <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }

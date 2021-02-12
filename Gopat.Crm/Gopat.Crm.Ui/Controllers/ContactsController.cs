@@ -6,26 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gopat.Crm.Models;
-using Gopat.Crm.Ui.Models.Company;
 
 namespace Gopat.Crm.Ui.Controllers
 {
-    public class CompaniesController : Controller
+    public class ContactsController : Controller
     {
         private readonly GopatContext _context;
 
-        public CompaniesController(GopatContext context)
+        public ContactsController(GopatContext context)
         {
             _context = context;
         }
 
-        // GET: Companies
+        // GET: Contacts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Companies.ToListAsync());
+            var gopatContext = _context.Contacts.Include(c => c.Company);
+            return View(await gopatContext.ToListAsync());
         }
 
-        // GET: Companies/Details/5
+        // GET: Contacts/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -33,55 +33,45 @@ namespace Gopat.Crm.Ui.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies
-                .Include(c => c.Sites)
-                .Include(c => c.Contracts)
-                .Include(c => c.Contacts)
+            var contact = await _context.Contacts
+                .Include(c => c.Company)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (company == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(company);
+            return View(contact);
         }
 
-        // GET: Companies/Create
-        public IActionResult Create()
+        // GET: Contacts/Create
+        public IActionResult Create(Guid companyId)
         {
+            ViewData["CompanyId"] = companyId;
+
+
             return View();
         }
 
-        // POST: Companies/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateCompanyViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("JobRole,CompanyId,Id,Created,Modified")] Contact contact)
         {
-            if (!ModelState.IsValid) return View(viewModel);
-
-            viewModel.Company.Id = Guid.NewGuid();
-            _context.Add(viewModel.Company);
-
-            viewModel.PrimaryContact.Id = Guid.NewGuid();
-            viewModel.PrimaryContact.CompanyId = viewModel.Company.Id;
-            _context.Add(viewModel.PrimaryContact);
-
-            var site = new Site
+            if (ModelState.IsValid)
             {
-                Address = viewModel.Company.Address, 
-                CompanyId = viewModel.Company.Id
-            };
-
-            _context.Add(site);
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-
+                contact.Id = Guid.NewGuid();
+                _context.Add(contact);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName", contact.CompanyId);
+            return View(contact);
         }
 
-        // GET: Companies/Edit/5
+        // GET: Contacts/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -89,22 +79,23 @@ namespace Gopat.Crm.Ui.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null)
+            var contact = await _context.Contacts.FindAsync(id);
+            if (contact == null)
             {
                 return NotFound();
             }
-            return View(company);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName", contact.CompanyId);
+            return View(contact);
         }
 
-        // POST: Companies/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CompanyName,Id,Created,Modified")] Company company)
+        public async Task<IActionResult> Edit(Guid id, Contact contact)
         {
-            if (id != company.Id)
+            if (id != contact.Id)
             {
                 return NotFound();
             }
@@ -113,12 +104,12 @@ namespace Gopat.Crm.Ui.Controllers
             {
                 try
                 {
-                    _context.Update(company);
+                    _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CompanyExists(company.Id))
+                    if (!ContactExists(contact.Id))
                     {
                         return NotFound();
                     }
@@ -127,12 +118,13 @@ namespace Gopat.Crm.Ui.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Companies", new { id = contact.CompanyId });
             }
-            return View(company);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName", contact.CompanyId);
+            return View(contact);
         }
 
-        // GET: Companies/Delete/5
+        // GET: Contacts/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -140,30 +132,31 @@ namespace Gopat.Crm.Ui.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies
+            var contact = await _context.Contacts
+                .Include(c => c.Company)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (company == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(company);
+            return View(contact);
         }
 
-        // POST: Companies/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var company = await _context.Companies.FindAsync(id);
-            _context.Companies.Remove(company);
+            var contact = await _context.Contacts.FindAsync(id);
+            _context.Contacts.Remove(contact);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CompanyExists(Guid id)
+        private bool ContactExists(Guid id)
         {
-            return _context.Companies.Any(e => e.Id == id);
+            return _context.Contacts.Any(e => e.Id == id);
         }
     }
 }
