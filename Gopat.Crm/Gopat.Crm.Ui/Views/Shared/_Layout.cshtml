@@ -1,49 +1,363 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>@ViewData["Title"] - Gopat.Crm.Ui</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
+    <link rel="stylesheet" href="~/dist-assets/css/themes/lite-purple.css" />
+    <link rel="stylesheet" href="~/dist-assets/css/plugins/perfect-scrollbar.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GoPat</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                      
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Companies" asp-action="Index">Companies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contracts" asp-action="Index">Contracts</a>
-                        </li>
-                    </ul>
+<body class="text-left">
+    <div class="app-admin-wrap layout-horizontal-bar">
+        <div class="main-header">
+            <div class="logo"><img src="../../dist-assets/images/logo.png" alt="" /></div>
+            <div class="menu-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="d-flex align-items-center">
+           
+                <div class="search-bar">
+                    <input type="text" placeholder="Search" /><i class="search-icon text-muted i-Magnifi-Glass1"></i>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Gopat.Crm.Ui - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div style="margin: auto"></div>
+            <div class="header-part-right">
+                <!-- Full screen toggle--><i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
+            
+            </div>
         </div>
-    </footer>
+        <!-- header top menu end-->
+        <div class="horizontal-bar-wrap">
+            <div class="header-topnav">
+                <div class="container-fluid">
+                    <div class="topnav rtl-ps-none" id="" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+                        <ul class="menu float-left">
+                            <li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Dashboard</label><a href="#"><i class="nav-icon mr-2 i-Bar-Chart"></i> Dashboard</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li><a asp-controller="Home" asp-action="Index"><i class="nav-icon mr-2 i-Clock-3"></i><span class="item-name">Home</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">UI kits</label><a href="#"><i class="nav-icon mr-2 i-Suitcase"></i> Companies</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li><a asp-controller="Companies" asp-action="Index"><i class="nav-icon mr-2 i-Bell1"></i><span class="item-name">List</span></a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- end ui kits-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Extra UI kits</label><a href="#"><i class="nav-icon i-Library mr-2"></i> Extra UI kits</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li><a href="cards.html"><i class="nav-icon mr-2 i-Line-Chart-2"></i><span class="item-name">Cards</span></a></li>
+                                            <li><a href="card.metrics.html"><i class="nav-icon mr-2 i-ID-Card"></i><span class="item-name">Card Metrics</span></a></li>
+                                            <li><a href="carousel.html"><i class="nav-icon mr-2 i-Video-Photographer"></i><span class="item-name">Carousels</span></a></li>
+                                            <li><a href="nouislider.html"><i class="nav-icon mr-2 i-Width-Window"></i><span class="item-name">Sliders</span></a></li>
+                                            <li><a href="image.cropper.html"><i class="nav-icon mr-2 i-Crop-2"></i><span class="item-name">Image Cropper</span></a></li>
+                                            <li><a href="loaders.html"><i class="nav-icon mr-2 i-Loading-3"></i><span class="item-name">Loaders</span></a></li>
+                                            <li><a href="ladda.button.html"><i class="nav-icon mr-2 i-Loading-2"></i><span class="item-name">Ladda Buttons</span></a></li>
+                                            <li><a href="toastr.html"><i class="nav-icon mr-2 i-Bell"></i><span class="item-name">Toastr</span></a></li>
+                                            <li><a href="sweet.alerts.html"><i class="nav-icon mr-2 i-Approved-Window"></i><span class="item-name">Sweet Alerts</span></a></li>
+                                            <li><a href="tour.html"><i class="nav-icon mr-2 i-Plane"></i><span class="item-name">User Tour</span></a></li>
+                                            <li><a href="upload.html"><i class="nav-icon mr-2 i-Data-Upload"></i><span class="item-name">Upload</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!-- end extra uikits-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Apps</label><a href="#"><i class="nav-icon mr-2 i-Computer-Secure"></i> Apps</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li><a href="invoice.html"><i class="nav-icon mr-2 i-Add-File"></i><span class="item-name">Invoice</span></a></li>
+                                            <li><a href="inbox.html"><i class="nav-icon mr-2 i-Email"></i><span class="item-name">Inbox</span></a></li>
+                                            <li><a href="chat.html"><i class="nav-icon mr-2 i-Speach-Bubble-3"></i><span class="item-name">Chat</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!-- end apps-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Forms</label><a href="#"><i class="nav-icon mr-2 i-File-Clipboard-File--Text"></i> Forms</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li><a href="form.basic.html"><i class="nav-icon mr-2 i-File-Clipboard-Text--Image"></i><span class="item-name">Basic Elements</span></a></li>
+                                            <li><a href="form.layouts.html"><i class="nav-icon mr-2 i-Split-Vertical"></i><span class="item-name">Form Layouts</span></a></li>
+                                            <li><a href="form.input.group.html"><i class="nav-icon mr-2 i-Receipt-4"></i><span class="item-name">Input Groups</span></a></li>
+                                            <li><a href="form.validation.html"><i class="nav-icon mr-2 i-Close-Window"></i><span class="item-name">Form Validation</span></a></li>
+                                            <li><a href="smart.wizard.html"><i class="nav-icon mr-2 i-Width-Window"></i><span class="item-name">Smart Wizard</span></a></li>
+                                            <li><a href="tag.input.html"><i class="nav-icon mr-2 i-Tag-2"></i><span class="item-name">Tag Input</span></a></li>
+                                            <li><a href="editor.html"><i class="nav-icon mr-2 i-Pen-2"></i><span class="item-name">Rich Editor</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!-- end Forms-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Charts</label><a href="#"><i class="nav-icon mr-2 i-Bar-Chart-5"></i> Charts</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li class="nav-item"><a href="charts.echarts.html" title="charts"><i class="nav-icon mr-2 i-Bar-Chart-2"></i><span class="item-name">echarts</span></a></li>
+                                            <li class="nav-item"><a href="charts.chartsjs.html"><i class="nav-icon mr-2 i-File-Clipboard-Text--Image"></i><span class="item-name">ChartJs</span></a></li>
+                                            <li><a href="charts.apexAreaCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Area</a></li>
+                                            <li><a href="charts.apexBarCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Bar</a></li>
+                                            <li><a href="charts.apexBubbleCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Bubble</a></li>
+                                            <li><a href="charts.apexColumnCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Column</a></li>
+                                            <li><a href="charts.apexCandleStickCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>CandleStick</a></li>
+                                            <li><a href="charts.apexLineCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Line</a></li>
+                                            <li><a href="charts.apexMixCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Mix</a></li>
+                                            <li><a href="charts.apexPieDonutCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>PieDonut</a></li>
+                                            <li><a href="charts.apexRadarCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Radar</a></li>
+                                            <li><a href="charts.apexRadialBarCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>RadialBar</a></li>
+                                            <li><a href="charts.apexScatterCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Scatter</a></li>
+                                            <li><a href="charts.apexSparklineCharts.html"><i class="nav-icon mr-2 i-Bar-Chart-2"></i>Sparkline</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Widgets</label><a href="#"><i class="nav-icon mr-2 i-Windows-2"></i> Widgets</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li class="nav-item"><a href="widget-card.html" title="charts"><i class="nav-icon mr-2 i-Receipt-4"></i><span class="item-name">Widget card</span></a></li>
+                                            <li class="nav-item"><a href="widget-statistics.html"><i class="nav-icon mr-2 i-Receipt-4"></i><span class="item-name">widget statistics</span></a></li>
+                                            <li><a href="widget-list.html"><i class="nav-icon mr-2 i-Receipt-4"></i>Widget List</a></li>
+                                            <li><a href="widget-app.html"><i class="nav-icon mr-2 i-Receipt-4"></i>Widget App </a></li>
+                                            <li><a href="weather-card.html"><i class="nav-icon mr-2 i-Receipt-4"></i>Weather App </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!--end-widgets-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Widgets</label><a href="datatables.html"><i class="nav-icon mr-2 i-File-Horizontal-Text"></i> Datatables</a>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!--end-datatables-->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Sessions</label><a href="#"><i class="nav-icon mr-2 i-Administrator"></i> Sessions</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li class="nav-item"><a href="../sessions/signin.html" title="charts"><i class="nav-icon mr-2 i-Checked-User"></i><span class="item-name">Signin</span></a></li>
+                                            <li class="nav-item"><a href="../sessions/signup.html"><i class="nav-icon mr-2 i-Add-User"></i><span class="item-name">Sign Up</span></a></li>
+                                            <li><a href="../sessions/forgot.html"><i class="nav-icon mr-2 i-Add-User"></i>Forgot</a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
+                                <!--end-sessions-->
+                                
+                                <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Others</label><a href="#"><i class="nav-icon mr-2 i-Double-Tap"></i>Others</a>
+                                        <input id="drop-2" type="checkbox" />
+                                        <ul>
+                                            <li class="nav-item"><a href="../sessions/not-found.html" title="charts"><i class="nav-icon mr-2 i-Error-404-Window"></i><span class="item-name">Not Found</span></a></li>
+                                            <li class="nav-item"><a href="user.profile.html"><i class="nav-icon mr-2 i-Male"></i><span class="item-name">User Profile</span></a></li>
+                                            <li><a href="blank.html"><i class="nav-icon mr-2 i-File-Horizontal"></i>Blank Page</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!--end-pages -->
+                            <!--<li>
+                                <div>
+                                    <div>
+                                        <label class="toggle" for="drop-2">Doc</label><a href="http://demos.ui-lib.com/gull-html-doc/"><i class="nav-icon mr-2 i-Safe-Box1"></i>Doc</a>
+                                    </div>
+                                </div>
+                            </li>-->
+                            <!--end-doc  -->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =============== Horizontal bar End ================-->
+        <div class="main-content-wrap d-flex flex-column">
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div><!-- ============ Search UI Start ============= -->
+    <div class="search-ui">
+        <div class="search-header">
+            <img src="../../dist-assets/images/logo.png" alt="" class="logo">
+            <button class="search-close btn btn-icon bg-transparent float-right mt-2">
+                <i class="i-Close-Window text-22 text-muted"></i>
+            </button>
+        </div>
+        <input type="text" placeholder="Type here" class="search-input" autofocus>
+        <div class="search-title">
+            <span class="text-muted">Search results</span>
+        </div>
+        <div class="search-results list-horizontal">
+            <div class="list-item col-md-12 p-0">
+                <div class="card o-hidden flex-row mb-4 d-flex">
+                    <div class="list-thumb d-flex">
+                        <!-- TUMBNAIL -->
+                        <img src="../../dist-assets/images/products/headphone-1.jpg" alt="">
+                    </div>
+                    <div class="flex-grow-1 pl-2 d-flex">
+                        <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
+                            <!-- OTHER DATA -->
+                            <a href="" class="w-40 w-sm-100">
+                                <div class="item-title">Headphone 1</div>
+                            </a>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">Gadget</p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                $300
+                                <del class="text-secondary">$400</del>
+                            </p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100 d-none d-lg-block item-badges">
+                                <span class="badge badge-danger">Sale</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-item col-md-12 p-0">
+                <div class="card o-hidden flex-row mb-4 d-flex">
+                    <div class="list-thumb d-flex">
+                        <!-- TUMBNAIL -->
+                        <img src="../../dist-assets/images/products/headphone-2.jpg" alt="">
+                    </div>
+                    <div class="flex-grow-1 pl-2 d-flex">
+                        <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
+                            <!-- OTHER DATA -->
+                            <a href="" class="w-40 w-sm-100">
+                                <div class="item-title">Headphone 1</div>
+                            </a>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">Gadget</p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                $300
+                                <del class="text-secondary">$400</del>
+                            </p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100 d-none d-lg-block item-badges">
+                                <span class="badge badge-primary">New</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-item col-md-12 p-0">
+                <div class="card o-hidden flex-row mb-4 d-flex">
+                    <div class="list-thumb d-flex">
+                        <!-- TUMBNAIL -->
+                        <img src="../../dist-assets/images/products/headphone-3.jpg" alt="">
+                    </div>
+                    <div class="flex-grow-1 pl-2 d-flex">
+                        <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
+                            <!-- OTHER DATA -->
+                            <a href="" class="w-40 w-sm-100">
+                                <div class="item-title">Headphone 1</div>
+                            </a>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">Gadget</p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                $300
+                                <del class="text-secondary">$400</del>
+                            </p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100 d-none d-lg-block item-badges">
+                                <span class="badge badge-primary">New</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-item col-md-12 p-0">
+                <div class="card o-hidden flex-row mb-4 d-flex">
+                    <div class="list-thumb d-flex">
+                        <!-- TUMBNAIL -->
+                        <img src="../../dist-assets/images/products/headphone-4.jpg" alt="">
+                    </div>
+                    <div class="flex-grow-1 pl-2 d-flex">
+                        <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
+                            <!-- OTHER DATA -->
+                            <a href="" class="w-40 w-sm-100">
+                                <div class="item-title">Headphone 1</div>
+                            </a>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">Gadget</p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                $300
+                                <del class="text-secondary">$400</del>
+                            </p>
+                            <p class="m-0 text-muted text-small w-15 w-sm-100 d-none d-lg-block item-badges">
+                                <span class="badge badge-primary">New</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PAGINATION CONTROL -->
+        <div class="col-md-12 mt-5 text-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination d-inline-flex">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- ============ Search UI End ============= -->
+    <script src="~/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+    <script src="~/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="~/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/dist-assets/js/scripts/script.min.js"></script>
+    <script src="~/dist-assets/js/scripts/sidebar-horizontal.script.js"></script>
+    <script src="~/dist-assets/js/plugins/echarts.min.js"></script>
+    <script src="~/dist-assets/js/scripts/echart.options.min.js"></script>
+    <script src="~/dist-assets/js/scripts/dashboard.v1.script.min.js"></script>
+    <script src="~/dist-assets/js/scripts/customizer.script.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
