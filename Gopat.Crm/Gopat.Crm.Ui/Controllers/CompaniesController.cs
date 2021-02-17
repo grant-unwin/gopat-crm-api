@@ -37,6 +37,7 @@ namespace Gopat.Crm.Ui.Controllers
                 .Include(c => c.Sites)
                 .Include(c => c.Contracts)
                 .Include(c => c.Contacts)
+                .Include(c => c.TestSlots)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (company == null)
             {

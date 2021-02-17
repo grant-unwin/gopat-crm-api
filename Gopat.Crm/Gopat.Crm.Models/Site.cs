@@ -19,5 +19,6 @@ namespace Gopat.Crm.Models
 
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Contract> Contracts { get; set; }
+        public ICollection<TestSlot> TestSlots { get; set; }
     }
 }

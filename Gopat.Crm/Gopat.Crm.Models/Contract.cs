@@ -32,7 +32,6 @@ namespace Gopat.Crm.Models
         public DateTime StartDate { get; set; }
         public DateTime RenewalDate { get; set; }
         public DateTime? CancelledDate { get; set; }
-
-
+        public ICollection<TestSlot> TestSlots { get; set; }
     }
 }

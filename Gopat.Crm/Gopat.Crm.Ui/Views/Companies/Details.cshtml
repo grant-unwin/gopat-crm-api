@@ -1,4 +1,5 @@
 ﻿@using Gopat.Crm.Models
+@using Gopat.Crm.Models.Enums
 @model Gopat.Crm.Models.Company
 
 @{
@@ -174,63 +175,111 @@
     </div>
     
     
-    <div class="col-6">
-        <div class="row">
+<div class="col-6">
+    <div class="row">
 
-            <div class="col-6">
-                <h4>Contracts</h4>
-            </div>
-            <div class="col-6 text-right">
-                <a class="btn btn-light" asp-action="Create" asp-controller="Contracts" asp-route-companyId="@Model.Id">Add</a>
-
-            </div>
+        <div class="col-6">
+            <h4>Contracts</h4>
         </div>
-        <hr />
-        <table class="table">
-            <thead>
-            @{ var contract = new Contract(); }
+        <div class="col-6 text-right">
+            <a class="btn btn-light" asp-action="Create" asp-controller="Contracts" asp-route-companyId="@Model.Id">Add</a>
 
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => contract.StartDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => contract.IntervalMonths)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => contract.Price.CalloutFee)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => contract.Price.ApplianceTestFee)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.Contracts)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IntervalMonths)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price.ApplianceTestFee)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price.CalloutFee)
-                    </td>
-                    <td>
-                        <a asp-controller="Contracts" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-
+        </div>
     </div>
+    <hr />
+    <table class="table">
+        <thead>
+        @{ var contract = new Contract(); }
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => contract.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => contract.IntervalMonths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => contract.Price.CalloutFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => contract.Price.ApplianceTestFee)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Contracts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IntervalMonths)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price.ApplianceTestFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price.CalloutFee)
+                </td>
+                <td>
+                    <a asp-controller="Contracts" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="col-6">
+    <div class="row">
+
+        <div class="col-6">
+            <h4>Completes Tests</h4>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-light" asp-action="Create" asp-controller="Contracts" asp-route-companyId="@Model.Id">Add</a>
+
+        </div>
+    </div>
+    <hr />
+    <table class="table">
+        <thead>
+        @{ var testSlot = new TestSlot(); }
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => testSlot.ScheduledDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => testSlot.EstimatedAppliances)
+            </th>
+            
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.GetTestSlots(TestSlotResult.Completed))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduledDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedAppliances)
+                </td>
+                <td>
+                    <a asp-controller="TestSlots" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
 </div>
 <div>
 

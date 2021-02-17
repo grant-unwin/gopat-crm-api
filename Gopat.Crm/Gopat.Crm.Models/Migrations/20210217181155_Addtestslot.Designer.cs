@@ -4,14 +4,16 @@ using Gopat.Crm.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gopat.Crm.Models.Migrations
 {
     [DbContext(typeof(GopatContext))]
-    partial class GopatContextModelSnapshot : ModelSnapshot
+    [Migration("20210217181155_Addtestslot")]
+    partial class Addtestslot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,9 +188,6 @@ namespace Gopat.Crm.Models.Migrations
                     b.Property<int?>("ActualDurationMins")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("ContractId")
                         .HasColumnType("uniqueidentifier");
 
@@ -214,8 +213,6 @@ namespace Gopat.Crm.Models.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("ContractId");
 
@@ -445,12 +442,6 @@ namespace Gopat.Crm.Models.Migrations
 
             modelBuilder.Entity("Gopat.Crm.Models.TestSlot", b =>
                 {
-                    b.HasOne("Gopat.Crm.Models.Company", "Company")
-                        .WithMany("TestSlots")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Gopat.Crm.Models.Contract", "Contract")
                         .WithMany("TestSlots")
                         .HasForeignKey("ContractId");
@@ -480,8 +471,6 @@ namespace Gopat.Crm.Models.Migrations
                                 .HasForeignKey("TestSlotId");
                         });
 
-                    b.Navigation("Company");
-
                     b.Navigation("Contract");
 
                     b.Navigation("Price");
@@ -496,8 +485,6 @@ namespace Gopat.Crm.Models.Migrations
                     b.Navigation("Contracts");
 
                     b.Navigation("Sites");
-
-                    b.Navigation("TestSlots");
                 });
 
             modelBuilder.Entity("Gopat.Crm.Models.Contract", b =>

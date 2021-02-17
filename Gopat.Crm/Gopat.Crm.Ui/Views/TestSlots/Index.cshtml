@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Gopat.Crm.Models.TestSlot>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Site)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedDurationMins)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualDurationMins)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedAppliances)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualAppliances)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestSlowResult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modified)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Site.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedDurationMins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualDurationMins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedAppliances)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualAppliances)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestSlowResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

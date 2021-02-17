@@ -14,28 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IntervalMonths)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Company)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Site)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RenewalDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CancelledDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modified)
             </th>
             <th></th>
         </tr>
@@ -43,30 +25,15 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IntervalMonths)
-            </td>
+         
             <td>
                 @Html.DisplayFor(modelItem => item.Company.CompanyName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Site.Id)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RenewalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CancelledDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modified)
-            </td>
+       
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

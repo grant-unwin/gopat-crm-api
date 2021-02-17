@@ -15,6 +15,8 @@ namespace Gopat.Crm.Models
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Site> Sites { get; set; }
 
+        public DbSet<TestSlot> TestSlots { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +52,23 @@ namespace Gopat.Crm.Models
                 .IsRequired()
                 .HasForeignKey(p => p.SiteId);
 
+
+
+            modelBuilder.Entity<TestSlot>()
+                .HasOne(c => c.Site)
+                .WithMany(c => c.TestSlots)
+                .IsRequired()
+                .HasForeignKey(p => p.SiteId);
+
+            modelBuilder.Entity<TestSlot>()
+                .HasOne(c => c.Contract)
+                .WithMany(c => c.TestSlots)
+                .HasForeignKey(p => p.ContractId);
+
+            modelBuilder.Entity<TestSlot>()
+                .HasOne(c => c.Company)
+                .WithMany(c => c.TestSlots)
+                .HasForeignKey(p => p.CompanyId);
 
         }
 
